@@ -1,5 +1,5 @@
 """
-URL configuration for os_folder_tree_viewer project.
+URL configuration for treeView project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/

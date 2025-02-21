@@ -1,0 +1,264 @@
+{
+  "bin": {
+    "bash": "Bourne Again SHell",
+    "cat": "Concatenate files and print on standard output",
+    "chmod": "Change file mode bits",
+    "cp": "Copy files and directories",
+    "date": "Print or set the system date and time",
+    "dd": "Convert and copy a file",
+    "df": "Report file system disk space usage",
+    "echo": "Display a line of text",
+    "grep": "Print lines that match patterns",
+    "gzip": "Compress or expand files",
+    "ls": "List directory contents",
+    "mkdir": "Make directories",
+    "mv": "Move (rename) files",
+    "ping": "Send ICMP ECHO_REQUEST to network hosts",
+    "ps": "Report process status",
+    "rm": "Remove files or directories",
+    "sed": "Stream editor for filtering and transforming text",
+    "tar": "An archiving utility",
+    "touch": "Change file timestamps"
+  },
+  "boot": {
+    "grub": {
+      "grub.cfg": "GRUB2 boot loader configuration",
+      "themes": {
+        "ubuntu-mate": {
+          "theme.txt": "GRUB theme configuration",
+          "background.png": "GRUB background image"
+        }
+      }
+    },
+    "initrd.img-5.15.0-76-generic": "Initial RAM disk for kernel 5.15.0-76",
+    "vmlinuz-5.15.0-76-generic": "Linux kernel executable",
+    "System.map-5.15.0-76-generic": "Kernel symbol table",
+    "config-5.15.0-76-generic": "Kernel configuration"
+  },
+  "dev": {
+    "sda": "First SATA drive",
+    "sda1": "First partition on first SATA drive",
+    "sda2": "Second partition on first SATA drive",
+    "null": "Null device",
+    "random": "Random number generator device",
+    "urandom": "Non-blocking random number generator device",
+    "zero": "Null byte source",
+    "tty": "Current TTY device",
+    "tty0": "First virtual console",
+    "tty1": "Second virtual console"
+  },
+  "etc": {
+    "apt": {
+      "sources.list": "APT package manager sources",
+      "sources.list.d": {
+        "official-package-repositories.list": "Additional package repositories"
+      }
+    },
+    "fstab": "Static filesystem information",
+    "group": "Group definitions",
+    "hostname": "System hostname",
+    "hosts": "Static table lookup for hostnames",
+    "passwd": "User account information",
+    "shadow": "Secure user account information",
+    "sudoers": "sudo configuration file",
+    "resolv.conf": "DNS resolver configuration",
+    "ssh": {
+      "sshd_config": "SSH daemon configuration"
+    },
+    "crontab": "System-wide crontab",
+    "nginx": {
+      "nginx.conf": "Nginx web server configuration",
+      "sites-available": {
+        "default": "Default site configuration"
+      }
+    }
+  },
+  "home": {
+    "user": {
+      ".bashrc": "Bash shell configuration",
+      ".bash_history": "Bash command history",
+      ".ssh": {
+        "id_rsa": "SSH private key",
+        "id_rsa.pub": "SSH public key",
+        "known_hosts": "SSH known hosts file"
+      },
+      "Desktop": {
+        "welcome.txt": "Welcome text file"
+      },
+      "Documents": {
+        "project_notes.txt": "Project notes",
+        "resume.pdf": "User's resume"
+      },
+      "Downloads": {
+        "large_file.zip": "Dummy large file[1]",
+        "software_installer.deb": "Dummy software installer[2]"
+      },
+      "Music": {
+        "favorite_song.mp3": "Dummy audio file[3]"
+      },
+      "Pictures": {
+        "vacation_photo.jpg": "Dummy image file[4]",
+        "screenshot.png": "Dummy screenshot[5]"
+      },
+      "Videos": {
+        "family_video.mp4": "Dummy video file[6]"
+      }
+    }
+  },
+  "lib": {
+    "modules": {
+      "5.15.0-76-generic": {
+        "kernel": {
+          "drivers": {
+            "net": {
+              "wireless": {
+                "iwlwifi.ko": "Intel wireless driver module"
+              }
+            }
+          }
+        }
+      }
+    },
+    "systemd": {
+      "system": {
+        "networking.service": "Networking service unit file"
+      }
+    },
+    "udev": {
+      "rules.d": {
+        "70-persistent-net.rules": "Network interface naming rules"
+      }
+    }
+  },
+  "media": {
+    "cdrom": {}
+  },
+  "mnt": {},
+  "opt": {
+    "google": {
+      "chrome": {
+        "chrome": "Google Chrome executable"
+      }
+    }
+  },
+  "proc": {
+    "cpuinfo": "CPU information",
+    "meminfo": "Memory information",
+    "version": "Kernel version information",
+    "loadavg": "Load average information",
+    "uptime": "System uptime information"
+  },
+  "root": {
+    ".bashrc": "Root's Bash configuration",
+    ".ssh": {
+      "authorized_keys": "Authorized SSH keys for root"
+    }
+  },
+  "run": {
+    "lock": {},
+    "user": {}
+  },
+  "sbin": {
+    "init": "Init system symlink",
+    "fdisk": "Partition table manipulator",
+    "ifconfig": "Network interface configurator",
+    "iptables": "IP packet filter administration",
+    "mkfs": "Build a Linux filesystem",
+    "modprobe": "Add and remove modules from the Linux Kernel",
+    "reboot": "Reboot the system",
+    "shutdown": "Bring the system down"
+  },
+  "srv": {},
+  "sys": {
+    "block": {},
+    "bus": {},
+    "class": {},
+    "dev": {},
+    "devices": {},
+    "firmware": {},
+    "fs": {},
+    "kernel": {},
+    "module": {},
+    "power": {}
+  },
+  "tmp": {
+    "tmp_file.txt": "Temporary file[7]"
+  },
+  "usr": {
+    "bin": {
+      "gcc": "GNU C compiler",
+      "python3": "Python 3 interpreter",
+      "vim": "Vi Improved text editor",
+      "curl": "Transfer data from or to a server",
+      "git": "Distributed version control system",
+      "ssh": "OpenSSH SSH client"
+    },
+    "include": {
+      "linux": {
+        "input.h": "Linux input header file"
+      }
+    },
+    "lib": {
+      "x86_64-linux-gnu": {
+        "libcrypto.so.1.1": "OpenSSL cryptographic library"
+      }
+    },
+    "local": {
+      "bin": {},
+      "lib": {},
+      "share": {}
+    },
+    "share": {
+      "doc": {},
+      "man": {
+        "man1": {
+          "ls.1.gz": "Manual page for ls command"
+        }
+      }
+    },
+    "src": {
+      "linux-headers-5.15.0-76": {
+        "include": {
+          "linux": {
+            "kernel.h": "Linux kernel header file"
+          }
+        }
+      }
+    }
+  },
+  "var": {
+    "cache": {
+      "apt": {
+        "archives": {
+          "partial": {}
+        }
+      }
+    },
+    "lib": {
+      "dpkg": {
+        "status": "Package status information"
+      }
+    },
+    "log": {
+      "auth.log": "Authentication log",
+      "syslog": "System log",
+      "kern.log": "Kernel log",
+      "nginx": {
+        "access.log": "Nginx access log",
+        "error.log": "Nginx error log"
+      }
+    },
+    "spool": {
+      "cron": {
+        "crontabs": {
+          "root": "Root's crontab"
+        }
+      }
+    },
+    "www": {
+      "html": {
+        "index.html": "Default web page"
+      }
+    }
+  }
+}
