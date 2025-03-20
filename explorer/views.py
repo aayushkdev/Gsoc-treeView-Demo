@@ -12,30 +12,40 @@ try:
         dummy_filesystem = json.load(file)
 except (FileNotFoundError, json.JSONDecodeError) as e:
     logger.error(f"Error loading dummy filesystem: {e}")
-    dummy_filesystem = {}
+    dummy_filesystem = [] 
 
-
-# Helper function to get directory structure
 def get_directory_structure(request):
-    return JsonResponse(dummy_filesystem)
+    """
+    Returns the dummy file system structure in the expected format.
+    """
+    return JsonResponse(dummy_filesystem, safe=False)
 
-# Get file content from the dummy file system
+
 def get_file_content(request, file_path):
+    """
+    Retrieves file content based on the given file path.
+    """
     logger.debug(f"Requested file path: {file_path}")
 
-    # Split path into parts
-    parts = file_path.split("/")
-    node = dummy_filesystem
+    # Normalize the path
+    parts = file_path.strip("/").split("/")
+    
+    def find_node(filesystem, parts):
+        """Recursively search for a file or directory node."""
+        for item in filesystem:
+            if item["name"] == parts[0]:
+                if len(parts) == 1:  
+                    return item
+                elif item["is_dir"]:  
+                    return find_node(item["children"], parts[1:])
+        return None
 
-    # Traverse the dummy file system
-    try:
-        for part in parts:
-            node = node[part]  # Move to the next folder or file
+    node = find_node(dummy_filesystem, parts)
 
-        if isinstance(node, dict):
-            return JsonResponse({"error": "This is a folder, not a file"}, status=400)
+    if node is None:
+        return JsonResponse({"error": f"Path '{file_path}' not found"}, status=404)
 
-        return JsonResponse({"content": node})
+    if node["is_dir"]:
+        return JsonResponse({"type": "directory", "contents": node["children"]})
 
-    except KeyError:
-        return JsonResponse({"error": "File not found"}, status=404)
+    return JsonResponse({"type": "file", "content": node.get("content", "No content available.")})

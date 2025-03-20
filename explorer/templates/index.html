@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OS File Viewer</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
@@ -17,30 +15,28 @@
 
         #file-tree {
             width: 30%;
-            border-right: 1px solid #ccc;
+            min-width: 200px;
+            max-width: 50%;
             padding: 10px;
             overflow-y: auto;
-            background-color: #fafafa;
+            border-right: 1px solid #ccc;
             box-sizing: border-box;
         }
 
+        #resizer {
+            width: 5px;
+            cursor: ew-resize;
+            background-color: #ccc;
+        }
+
         #file-content {
-            width: 70%;
+            flex: 1;
             padding: 15px;
             overflow-y: auto;
             box-sizing: border-box;
         }
 
-        /* Resizer Divider */
-        #resizer {
-            width: 7px;
-            cursor: ew-resize;
-            background-color: #ccc;
-        }
-
-        /* Folder Styling */
-        .folder {
-            font-weight: bold;
+        .folder, .file {
             cursor: pointer;
             padding: 6px 8px;
             display: flex;
@@ -50,27 +46,10 @@
             transition: background 0.2s ease-in-out;
         }
 
-        .folder:hover {
-            background-color: #e3e3e3;
-        }
-
-        /* File Styling */
-        .file {
-            margin-left: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            padding: 4px 6px;
-            gap: 5px;
-            border-radius: 4px;
-            transition: background 0.2s ease-in-out;
-        }
-
-        .file:hover {
+        .folder:hover, .file:hover {
             background-color: #f0f0f0;
         }
 
-        /* Arrow Icon for Folder Toggle */
         .arrow {
             width: 12px;
             transition: transform 0.2s ease-in-out;
@@ -80,140 +59,89 @@
             transform: rotate(90deg);
         }
 
-        /* Icons */
         .icon {
             width: 16px;
             height: 16px;
         }
 
-        /* Removes default list styles */
         ul {
             list-style: none;
             padding-left: 10px;
         }
-
-        /* Highlighting class */
-        .highlight {
-            background-color: #e3e3e3;
-        }
-
     </style>
-
 </head>
 <body>
-
     <div id="file-tree">
         <h3>File Explorer</h3>
         <ul id="tree"></ul>
     </div>
-
     <div id="resizer"></div>
-
     <div id="file-content">
         <h3>File Content</h3>
-        <pre id="content"></pre>
+        <pre id="content">Select a file to view its content.</pre>
     </div>
 
     <script>
-        $(document).ready(function() {
-            let isResizing = false;
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("/get-directory-structure/")
+                .then(response => response.json())
+                .then(data => renderTree(data, document.getElementById("tree")))
+                .catch(error => console.error("Error loading file tree:", error));
 
-            // Resizable divider logic
-            $("#resizer").mousedown(function(e) {
-                isResizing = true;
-                $(document).mousemove(function(e) {
-                    if (isResizing) {
-                        let newWidth = e.clientX;
-                        let totalWidth = $(window).width();
-                        let fileTreeWidth = Math.max(100, Math.min(totalWidth - 200, newWidth));
-                        let fileContentWidth = totalWidth - fileTreeWidth - 10; // 10px for resizer width
-                        $("#file-tree").width(fileTreeWidth);
-                        $("#file-content").width(fileContentWidth);
-                    }
-                });
-
-                $(document).mouseup(function() {
-                    isResizing = false;
-                    $(document).off("mousemove");
-                });
-            });
-
-            function loadFileTree() {
-                $.get("/api/files/", function(data) {
-                    renderTree(data, $("#tree"));
-                });
-            }
-
-            function renderTree(data, parent, path = "") {
-                $.each(data, function(key, value) { 
-                    let currentPath = path ? path + "/" + key : key;
-                    if (typeof value === "object") {
-                        let folder = $("<li class='folder'>" + 
-                            "<span class='arrow'><i class='fas fa-chevron-right'></i></span> " +
-                            "<span class='icon'><i class='fas fa-folder'></i></span>" + key + 
-                            "</li>");
-                        let sublist = $("<ul style='display: none;'></ul>");
-                        folder.click(function() {
-                            let isExpanded = sublist.is(":visible");
-
-                            // Remove highlight from all folders and apply it to the clicked folder
-                            $(".folder").removeClass("highlight");
-                            $(this).addClass("highlight");
-
-                            $(this).children(".arrow").html(isExpanded ? "<i class='fas fa-chevron-right'></i>" : "<i class='fas fa-chevron-down'></i>");
-                            $(this).children(".icon").html(isExpanded ? "<i class='fas fa-folder'></i>" : "<i class='fas fa-folder-open'></i>"); // Change folder icon
-                            sublist.slideToggle(150);
-
-                            if (!isExpanded) {
-                                // If this folder wasn't expanded before, load its content lazily
-                                loadSubfolders(currentPath, sublist);
-                            }
+            function renderTree(data, parent) {
+                data.forEach(item => {
+                    let element = document.createElement("li");
+                    element.classList.add(item.is_dir ? "folder" : "file");
+                    
+                    if (item.is_dir) {
+                        element.innerHTML = `<span class='arrow'><i class='fas fa-chevron-right'></i></span>
+                                             <span class='icon'><i class='fas fa-folder'></i></span> ${item.name}`;
+                        let sublist = document.createElement("ul");
+                        sublist.style.display = "none";
+                        element.addEventListener("click", function(event) {
+                            event.stopPropagation();
+                            let isExpanded = sublist.style.display === "block";
+                            sublist.style.display = isExpanded ? "none" : "block";
+                            element.classList.toggle("expanded", !isExpanded);
                         });
-
-                        parent.append(folder);
-                        parent.append(sublist);
-                        renderTree(value, sublist, currentPath);
+                        parent.appendChild(element);
+                        parent.appendChild(sublist);
+                        renderTree(item.children, sublist);
                     } else {
-                        let file = $("<li class='file'>" + 
-                            "<span class='icon'><i class='fas fa-file-alt'></i></span> " + key + 
-                            "</li>");
-                        file.click(function() {
-                            // Highlight the clicked file
-                            $(".file").removeClass("highlight");
-                            $(this).addClass("highlight");
-
-                            // Remove highlight from any folder
-                            $(".folder").removeClass("highlight");
-
-                            loadFileContent(currentPath);
+                        element.innerHTML = `<span class='icon'><i class='fas fa-file-alt'></i></span> ${item.name}`;
+                        element.addEventListener("click", function() {
+                            document.getElementById("content").textContent = item.content || "No content available.";
                         });
-                        parent.append(file);
+                        parent.appendChild(element);
                     }
                 });
             }
-
-            function loadSubfolders(path, parent) {
-                $.get("/api/files/" + encodeURIComponent(path) + "/", function(subfolders) {
-                    renderTree(subfolders, parent, path);
-                });
-            }
-
-            function loadFileContent(filePath) {
-                $("#content").text("Loading...");
-                $.get("/api/files/" + encodeURIComponent(filePath) + "/", function(response) {
-                    if (response.error) {
-                        $("#content").text("Error: " + response.error);
-                    } else {
-                        $("#content").text(response.content);
-                    }
-                }).fail(function() {
-                    $("#content").text("Error loading file.");
-                });
-            }
-
-            loadFileTree();
         });
-    </script>
 
+        // Resizer functionality
+        const resizer = document.getElementById("resizer");
+        const fileTree = document.getElementById("file-tree");
+        let isResizing = false;
+
+        resizer.addEventListener("mousedown", (event) => {
+            isResizing = true;
+            document.addEventListener("mousemove", resizePanel);
+            document.addEventListener("mouseup", stopResize);
+        });
+
+        function resizePanel(event) {
+            if (!isResizing) return;
+            let newWidth = event.clientX;
+            if (newWidth > 200 && newWidth < window.innerWidth * 0.5) {
+                fileTree.style.width = newWidth + "px";
+            }
+        }
+
+        function stopResize() {
+            isResizing = false;
+            document.removeEventListener("mousemove", resizePanel);
+            document.removeEventListener("mouseup", stopResize);
+        }
+    </script>
 </body>
 </html>

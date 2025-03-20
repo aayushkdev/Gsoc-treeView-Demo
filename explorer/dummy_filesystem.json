@@ -1,264 +1,1224 @@
-{
-  "bin": {
-    "bash": "Bourne Again SHell",
-    "cat": "Concatenate files and print on standard output",
-    "chmod": "Change file mode bits",
-    "cp": "Copy files and directories",
-    "date": "Print or set the system date and time",
-    "dd": "Convert and copy a file",
-    "df": "Report file system disk space usage",
-    "echo": "Display a line of text",
-    "grep": "Print lines that match patterns",
-    "gzip": "Compress or expand files",
-    "ls": "List directory contents",
-    "mkdir": "Make directories",
-    "mv": "Move (rename) files",
-    "ping": "Send ICMP ECHO_REQUEST to network hosts",
-    "ps": "Report process status",
-    "rm": "Remove files or directories",
-    "sed": "Stream editor for filtering and transforming text",
-    "tar": "An archiving utility",
-    "touch": "Change file timestamps"
-  },
-  "boot": {
-    "grub": {
-      "grub.cfg": "GRUB2 boot loader configuration",
-      "themes": {
-        "ubuntu-mate": {
-          "theme.txt": "GRUB theme configuration",
-          "background.png": "GRUB background image"
-        }
+[
+  {
+    "name": "bin",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "bash",
+        "is_dir": false,
+        "children": [],
+        "content": "Bourne Again SHell"
+      },
+      {
+        "name": "cat",
+        "is_dir": false,
+        "children": [],
+        "content": "Concatenate files and print on standard output"
+      },
+      {
+        "name": "chmod",
+        "is_dir": false,
+        "children": [],
+        "content": "Change file mode bits"
+      },
+      {
+        "name": "cp",
+        "is_dir": false,
+        "children": [],
+        "content": "Copy files and directories"
+      },
+      {
+        "name": "date",
+        "is_dir": false,
+        "children": [],
+        "content": "Print or set the system date and time"
+      },
+      {
+        "name": "dd",
+        "is_dir": false,
+        "children": [],
+        "content": "Convert and copy a file"
+      },
+      {
+        "name": "df",
+        "is_dir": false,
+        "children": [],
+        "content": "Report file system disk space usage"
+      },
+      {
+        "name": "echo",
+        "is_dir": false,
+        "children": [],
+        "content": "Display a line of text"
+      },
+      {
+        "name": "grep",
+        "is_dir": false,
+        "children": [],
+        "content": "Print lines that match patterns"
+      },
+      {
+        "name": "gzip",
+        "is_dir": false,
+        "children": [],
+        "content": "Compress or expand files"
+      },
+      {
+        "name": "ls",
+        "is_dir": false,
+        "children": [],
+        "content": "List directory contents"
+      },
+      {
+        "name": "mkdir",
+        "is_dir": false,
+        "children": [],
+        "content": "Make directories"
+      },
+      {
+        "name": "mv",
+        "is_dir": false,
+        "children": [],
+        "content": "Move (rename) files"
+      },
+      {
+        "name": "ping",
+        "is_dir": false,
+        "children": [],
+        "content": "Send ICMP ECHO_REQUEST to network hosts"
+      },
+      {
+        "name": "ps",
+        "is_dir": false,
+        "children": [],
+        "content": "Report process status"
+      },
+      {
+        "name": "rm",
+        "is_dir": false,
+        "children": [],
+        "content": "Remove files or directories"
+      },
+      {
+        "name": "sed",
+        "is_dir": false,
+        "children": [],
+        "content": "Stream editor for filtering and transforming text"
+      },
+      {
+        "name": "tar",
+        "is_dir": false,
+        "children": [],
+        "content": "An archiving utility"
+      },
+      {
+        "name": "touch",
+        "is_dir": false,
+        "children": [],
+        "content": "Change file timestamps"
       }
-    },
-    "initrd.img-5.15.0-76-generic": "Initial RAM disk for kernel 5.15.0-76",
-    "vmlinuz-5.15.0-76-generic": "Linux kernel executable",
-    "System.map-5.15.0-76-generic": "Kernel symbol table",
-    "config-5.15.0-76-generic": "Kernel configuration"
+    ],
+    "content": null
   },
-  "dev": {
-    "sda": "First SATA drive",
-    "sda1": "First partition on first SATA drive",
-    "sda2": "Second partition on first SATA drive",
-    "null": "Null device",
-    "random": "Random number generator device",
-    "urandom": "Non-blocking random number generator device",
-    "zero": "Null byte source",
-    "tty": "Current TTY device",
-    "tty0": "First virtual console",
-    "tty1": "Second virtual console"
-  },
-  "etc": {
-    "apt": {
-      "sources.list": "APT package manager sources",
-      "sources.list.d": {
-        "official-package-repositories.list": "Additional package repositories"
-      }
-    },
-    "fstab": "Static filesystem information",
-    "group": "Group definitions",
-    "hostname": "System hostname",
-    "hosts": "Static table lookup for hostnames",
-    "passwd": "User account information",
-    "shadow": "Secure user account information",
-    "sudoers": "sudo configuration file",
-    "resolv.conf": "DNS resolver configuration",
-    "ssh": {
-      "sshd_config": "SSH daemon configuration"
-    },
-    "crontab": "System-wide crontab",
-    "nginx": {
-      "nginx.conf": "Nginx web server configuration",
-      "sites-available": {
-        "default": "Default site configuration"
-      }
-    }
-  },
-  "home": {
-    "user": {
-      ".bashrc": "Bash shell configuration",
-      ".bash_history": "Bash command history",
-      ".ssh": {
-        "id_rsa": "SSH private key",
-        "id_rsa.pub": "SSH public key",
-        "known_hosts": "SSH known hosts file"
-      },
-      "Desktop": {
-        "welcome.txt": "Welcome text file"
-      },
-      "Documents": {
-        "project_notes.txt": "Project notes",
-        "resume.pdf": "User's resume"
-      },
-      "Downloads": {
-        "large_file.zip": "Dummy large file[1]",
-        "software_installer.deb": "Dummy software installer[2]"
-      },
-      "Music": {
-        "favorite_song.mp3": "Dummy audio file[3]"
-      },
-      "Pictures": {
-        "vacation_photo.jpg": "Dummy image file[4]",
-        "screenshot.png": "Dummy screenshot[5]"
-      },
-      "Videos": {
-        "family_video.mp4": "Dummy video file[6]"
-      }
-    }
-  },
-  "lib": {
-    "modules": {
-      "5.15.0-76-generic": {
-        "kernel": {
-          "drivers": {
-            "net": {
-              "wireless": {
-                "iwlwifi.ko": "Intel wireless driver module"
+  {
+    "name": "boot",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "grub",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "grub.cfg",
+            "is_dir": false,
+            "children": [],
+            "content": "GRUB2 boot loader configuration"
+          },
+          {
+            "name": "themes",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "ubuntu-mate",
+                "is_dir": true,
+                "children": [
+                  {
+                    "name": "theme.txt",
+                    "is_dir": false,
+                    "children": [],
+                    "content": "GRUB theme configuration"
+                  },
+                  {
+                    "name": "background.png",
+                    "is_dir": false,
+                    "children": [],
+                    "content": "GRUB background image"
+                  }
+                ],
+                "content": null
               }
-            }
+            ],
+            "content": null
           }
-        }
+        ],
+        "content": null
+      },
+      {
+        "name": "initrd.img-5.15.0-76-generic",
+        "is_dir": false,
+        "children": [],
+        "content": "Initial RAM disk for kernel 5.15.0-76"
+      },
+      {
+        "name": "vmlinuz-5.15.0-76-generic",
+        "is_dir": false,
+        "children": [],
+        "content": "Linux kernel executable"
+      },
+      {
+        "name": "System.map-5.15.0-76-generic",
+        "is_dir": false,
+        "children": [],
+        "content": "Kernel symbol table"
+      },
+      {
+        "name": "config-5.15.0-76-generic",
+        "is_dir": false,
+        "children": [],
+        "content": "Kernel configuration"
       }
-    },
-    "systemd": {
-      "system": {
-        "networking.service": "Networking service unit file"
+    ],
+    "content": null
+  },
+  {
+    "name": "dev",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "sda",
+        "is_dir": false,
+        "children": [],
+        "content": "First SATA drive"
+      },
+      {
+        "name": "sda1",
+        "is_dir": false,
+        "children": [],
+        "content": "First partition on first SATA drive"
+      },
+      {
+        "name": "sda2",
+        "is_dir": false,
+        "children": [],
+        "content": "Second partition on first SATA drive"
+      },
+      {
+        "name": "null",
+        "is_dir": false,
+        "children": [],
+        "content": "Null device"
+      },
+      {
+        "name": "random",
+        "is_dir": false,
+        "children": [],
+        "content": "Random number generator device"
+      },
+      {
+        "name": "urandom",
+        "is_dir": false,
+        "children": [],
+        "content": "Non-blocking random number generator device"
+      },
+      {
+        "name": "zero",
+        "is_dir": false,
+        "children": [],
+        "content": "Null byte source"
+      },
+      {
+        "name": "tty",
+        "is_dir": false,
+        "children": [],
+        "content": "Current TTY device"
+      },
+      {
+        "name": "tty0",
+        "is_dir": false,
+        "children": [],
+        "content": "First virtual console"
+      },
+      {
+        "name": "tty1",
+        "is_dir": false,
+        "children": [],
+        "content": "Second virtual console"
       }
-    },
-    "udev": {
-      "rules.d": {
-        "70-persistent-net.rules": "Network interface naming rules"
-      }
-    }
+    ],
+    "content": null
   },
-  "media": {
-    "cdrom": {}
-  },
-  "mnt": {},
-  "opt": {
-    "google": {
-      "chrome": {
-        "chrome": "Google Chrome executable"
-      }
-    }
-  },
-  "proc": {
-    "cpuinfo": "CPU information",
-    "meminfo": "Memory information",
-    "version": "Kernel version information",
-    "loadavg": "Load average information",
-    "uptime": "System uptime information"
-  },
-  "root": {
-    ".bashrc": "Root's Bash configuration",
-    ".ssh": {
-      "authorized_keys": "Authorized SSH keys for root"
-    }
-  },
-  "run": {
-    "lock": {},
-    "user": {}
-  },
-  "sbin": {
-    "init": "Init system symlink",
-    "fdisk": "Partition table manipulator",
-    "ifconfig": "Network interface configurator",
-    "iptables": "IP packet filter administration",
-    "mkfs": "Build a Linux filesystem",
-    "modprobe": "Add and remove modules from the Linux Kernel",
-    "reboot": "Reboot the system",
-    "shutdown": "Bring the system down"
-  },
-  "srv": {},
-  "sys": {
-    "block": {},
-    "bus": {},
-    "class": {},
-    "dev": {},
-    "devices": {},
-    "firmware": {},
-    "fs": {},
-    "kernel": {},
-    "module": {},
-    "power": {}
-  },
-  "tmp": {
-    "tmp_file.txt": "Temporary file[7]"
-  },
-  "usr": {
-    "bin": {
-      "gcc": "GNU C compiler",
-      "python3": "Python 3 interpreter",
-      "vim": "Vi Improved text editor",
-      "curl": "Transfer data from or to a server",
-      "git": "Distributed version control system",
-      "ssh": "OpenSSH SSH client"
-    },
-    "include": {
-      "linux": {
-        "input.h": "Linux input header file"
-      }
-    },
-    "lib": {
-      "x86_64-linux-gnu": {
-        "libcrypto.so.1.1": "OpenSSL cryptographic library"
-      }
-    },
-    "local": {
-      "bin": {},
-      "lib": {},
-      "share": {}
-    },
-    "share": {
-      "doc": {},
-      "man": {
-        "man1": {
-          "ls.1.gz": "Manual page for ls command"
-        }
-      }
-    },
-    "src": {
-      "linux-headers-5.15.0-76": {
-        "include": {
-          "linux": {
-            "kernel.h": "Linux kernel header file"
+  {
+    "name": "etc",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "apt",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "sources.list",
+            "is_dir": false,
+            "children": [],
+            "content": "APT package manager sources"
+          },
+          {
+            "name": "sources.list.d",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "official-package-repositories.list",
+                "is_dir": false,
+                "children": [],
+                "content": "Additional package repositories"
+              }
+            ],
+            "content": null
           }
-        }
+        ],
+        "content": null
+      },
+      {
+        "name": "fstab",
+        "is_dir": false,
+        "children": [],
+        "content": "Static filesystem information"
+      },
+      {
+        "name": "group",
+        "is_dir": false,
+        "children": [],
+        "content": "Group definitions"
+      },
+      {
+        "name": "hostname",
+        "is_dir": false,
+        "children": [],
+        "content": "System hostname"
+      },
+      {
+        "name": "hosts",
+        "is_dir": false,
+        "children": [],
+        "content": "Static table lookup for hostnames"
+      },
+      {
+        "name": "passwd",
+        "is_dir": false,
+        "children": [],
+        "content": "User account information"
+      },
+      {
+        "name": "shadow",
+        "is_dir": false,
+        "children": [],
+        "content": "Secure user account information"
+      },
+      {
+        "name": "sudoers",
+        "is_dir": false,
+        "children": [],
+        "content": "sudo configuration file"
+      },
+      {
+        "name": "resolv.conf",
+        "is_dir": false,
+        "children": [],
+        "content": "DNS resolver configuration"
+      },
+      {
+        "name": "ssh",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "sshd_config",
+            "is_dir": false,
+            "children": [],
+            "content": "SSH daemon configuration"
+          }
+        ],
+        "content": null
+      },
+      {
+        "name": "crontab",
+        "is_dir": false,
+        "children": [],
+        "content": "System-wide crontab"
+      },
+      {
+        "name": "nginx",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "nginx.conf",
+            "is_dir": false,
+            "children": [],
+            "content": "Nginx web server configuration"
+          },
+          {
+            "name": "sites-available",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "default",
+                "is_dir": false,
+                "children": [],
+                "content": "Default site configuration"
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
       }
-    }
+    ],
+    "content": null
   },
-  "var": {
-    "cache": {
-      "apt": {
-        "archives": {
-          "partial": {}
-        }
+  {
+    "name": "home",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "user",
+        "is_dir": true,
+        "children": [
+          {
+            "name": ".bashrc",
+            "is_dir": false,
+            "children": [],
+            "content": "Bash shell configuration"
+          },
+          {
+            "name": ".bash_history",
+            "is_dir": false,
+            "children": [],
+            "content": "Bash command history"
+          },
+          {
+            "name": ".ssh",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "id_rsa",
+                "is_dir": false,
+                "children": [],
+                "content": "SSH private key"
+              },
+              {
+                "name": "id_rsa.pub",
+                "is_dir": false,
+                "children": [],
+                "content": "SSH public key"
+              },
+              {
+                "name": "known_hosts",
+                "is_dir": false,
+                "children": [],
+                "content": "SSH known hosts file"
+              }
+            ],
+            "content": null
+          },
+          {
+            "name": "Desktop",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "welcome.txt",
+                "is_dir": false,
+                "children": [],
+                "content": "Welcome text file"
+              }
+            ],
+            "content": null
+          },
+          {
+            "name": "Documents",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "project_notes.txt",
+                "is_dir": false,
+                "children": [],
+                "content": "Project notes"
+              },
+              {
+                "name": "resume.pdf",
+                "is_dir": false,
+                "children": [],
+                "content": "User's resume"
+              }
+            ],
+            "content": null
+          },
+          {
+            "name": "Downloads",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "large_file.zip",
+                "is_dir": false,
+                "children": [],
+                "content": "Dummy large file[1]"
+              },
+              {
+                "name": "software_installer.deb",
+                "is_dir": false,
+                "children": [],
+                "content": "Dummy software installer[2]"
+              }
+            ],
+            "content": null
+          },
+          {
+            "name": "Music",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "favorite_song.mp3",
+                "is_dir": false,
+                "children": [],
+                "content": "Dummy audio file[3]"
+              }
+            ],
+            "content": null
+          },
+          {
+            "name": "Pictures",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "vacation_photo.jpg",
+                "is_dir": false,
+                "children": [],
+                "content": "Dummy image file[4]"
+              },
+              {
+                "name": "screenshot.png",
+                "is_dir": false,
+                "children": [],
+                "content": "Dummy screenshot[5]"
+              }
+            ],
+            "content": null
+          },
+          {
+            "name": "Videos",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "family_video.mp4",
+                "is_dir": false,
+                "children": [],
+                "content": "Dummy video file[6]"
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
       }
-    },
-    "lib": {
-      "dpkg": {
-        "status": "Package status information"
+    ],
+    "content": null
+  },
+  {
+    "name": "lib",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "modules",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "5.15.0-76-generic",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "kernel",
+                "is_dir": true,
+                "children": [
+                  {
+                    "name": "drivers",
+                    "is_dir": true,
+                    "children": [
+                      {
+                        "name": "net",
+                        "is_dir": true,
+                        "children": [
+                          {
+                            "name": "wireless",
+                            "is_dir": true,
+                            "children": [
+                              {
+                                "name": "iwlwifi.ko",
+                                "is_dir": false,
+                                "children": [],
+                                "content": "Intel wireless driver module"
+                              }
+                            ],
+                            "content": null
+                          }
+                        ],
+                        "content": null
+                      }
+                    ],
+                    "content": null
+                  }
+                ],
+                "content": null
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
+      },
+      {
+        "name": "systemd",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "system",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "networking.service",
+                "is_dir": false,
+                "children": [],
+                "content": "Networking service unit file"
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
+      },
+      {
+        "name": "udev",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "rules.d",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "70-persistent-net.rules",
+                "is_dir": false,
+                "children": [],
+                "content": "Network interface naming rules"
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
       }
-    },
-    "log": {
-      "auth.log": "Authentication log",
-      "syslog": "System log",
-      "kern.log": "Kernel log",
-      "nginx": {
-        "access.log": "Nginx access log",
-        "error.log": "Nginx error log"
+    ],
+    "content": null
+  },
+  {
+    "name": "media",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "cdrom",
+        "is_dir": true,
+        "children": [],
+        "content": null
       }
-    },
-    "spool": {
-      "cron": {
-        "crontabs": {
-          "root": "Root's crontab"
-        }
+    ],
+    "content": null
+  },
+  {
+    "name": "mnt",
+    "is_dir": true,
+    "children": [],
+    "content": null
+  },
+  {
+    "name": "opt",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "google",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "chrome",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "chrome",
+                "is_dir": false,
+                "children": [],
+                "content": "Google Chrome executable"
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
       }
-    },
-    "www": {
-      "html": {
-        "index.html": "Default web page"
+    ],
+    "content": null
+  },
+  {
+    "name": "proc",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "cpuinfo",
+        "is_dir": false,
+        "children": [],
+        "content": "CPU information"
+      },
+      {
+        "name": "meminfo",
+        "is_dir": false,
+        "children": [],
+        "content": "Memory information"
+      },
+      {
+        "name": "version",
+        "is_dir": false,
+        "children": [],
+        "content": "Kernel version information"
+      },
+      {
+        "name": "loadavg",
+        "is_dir": false,
+        "children": [],
+        "content": "Load average information"
+      },
+      {
+        "name": "uptime",
+        "is_dir": false,
+        "children": [],
+        "content": "System uptime information"
       }
-    }
+    ],
+    "content": null
+  },
+  {
+    "name": "root",
+    "is_dir": true,
+    "children": [
+      {
+        "name": ".bashrc",
+        "is_dir": false,
+        "children": [],
+        "content": "Root's Bash configuration"
+      },
+      {
+        "name": ".ssh",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "authorized_keys",
+            "is_dir": false,
+            "children": [],
+            "content": "Authorized SSH keys for root"
+          }
+        ],
+        "content": null
+      }
+    ],
+    "content": null
+  },
+  {
+    "name": "run",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "lock",
+        "is_dir": true,
+        "children": [],
+        "content": null
+      },
+      {
+        "name": "user",
+        "is_dir": true,
+        "children": [],
+        "content": null
+      }
+    ],
+    "content": null
+  },
+  {
+    "name": "sbin",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "init",
+        "is_dir": false,
+        "children": [],
+        "content": "Init system symlink"
+      },
+      {
+        "name": "fdisk",
+        "is_dir": false,
+        "children": [],
+        "content": "Partition table manipulator"
+      },
+      {
+        "name": "ifconfig",
+        "is_dir": false,
+        "children": [],
+        "content": "Network interface configurator"
+      },
+      {
+        "name": "iptables",
+        "is_dir": false,
+        "children": [],
+        "content": "IP packet filter administration"
+      },
+      {
+        "name": "mkfs",
+        "is_dir": false,
+        "children": [],
+        "content": "Build a Linux filesystem"
+      },
+      {
+        "name": "modprobe",
+        "is_dir": false,
+        "children": [],
+        "content": "Add and remove modules from the Linux Kernel"
+      },
+      {
+        "name": "reboot",
+        "is_dir": false,
+        "children": [],
+        "content": "Reboot the system"
+      },
+      {
+        "name": "shutdown",
+        "is_dir": false,
+        "children": [],
+        "content": "Bring the system down"
+      }
+    ],
+    "content": null
+  },
+  {
+    "name": "srv",
+    "is_dir": true,
+    "children": [],
+    "content": null
+  },
+  {
+    "name": "sys",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "block",
+        "is_dir": true,
+        "children": [],
+        "content": null
+      },
+      {
+        "name": "bus",
+        "is_dir": true,
+        "children": [],
+        "content": null
+      },
+      {
+        "name": "class",
+        "is_dir": true,
+        "children": [],
+        "content": null
+      },
+      {
+        "name": "dev",
+        "is_dir": true,
+        "children": [],
+        "content": null
+      },
+      {
+        "name": "devices",
+        "is_dir": true,
+        "children": [],
+        "content": null
+      },
+      {
+        "name": "firmware",
+        "is_dir": true,
+        "children": [],
+        "content": null
+      },
+      {
+        "name": "fs",
+        "is_dir": true,
+        "children": [],
+        "content": null
+      },
+      {
+        "name": "kernel",
+        "is_dir": true,
+        "children": [],
+        "content": null
+      },
+      {
+        "name": "module",
+        "is_dir": true,
+        "children": [],
+        "content": null
+      },
+      {
+        "name": "power",
+        "is_dir": true,
+        "children": [],
+        "content": null
+      }
+    ],
+    "content": null
+  },
+  {
+    "name": "tmp",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "tmp_file.txt",
+        "is_dir": false,
+        "children": [],
+        "content": "Temporary file[7]"
+      }
+    ],
+    "content": null
+  },
+  {
+    "name": "usr",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "bin",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "gcc",
+            "is_dir": false,
+            "children": [],
+            "content": "GNU C compiler"
+          },
+          {
+            "name": "python3",
+            "is_dir": false,
+            "children": [],
+            "content": "Python 3 interpreter"
+          },
+          {
+            "name": "vim",
+            "is_dir": false,
+            "children": [],
+            "content": "Vi Improved text editor"
+          },
+          {
+            "name": "curl",
+            "is_dir": false,
+            "children": [],
+            "content": "Transfer data from or to a server"
+          },
+          {
+            "name": "git",
+            "is_dir": false,
+            "children": [],
+            "content": "Distributed version control system"
+          },
+          {
+            "name": "ssh",
+            "is_dir": false,
+            "children": [],
+            "content": "OpenSSH SSH client"
+          }
+        ],
+        "content": null
+      },
+      {
+        "name": "include",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "linux",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "input.h",
+                "is_dir": false,
+                "children": [],
+                "content": "Linux input header file"
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
+      },
+      {
+        "name": "lib",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "x86_64-linux-gnu",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "libcrypto.so.1.1",
+                "is_dir": false,
+                "children": [],
+                "content": "OpenSSL cryptographic library"
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
+      },
+      {
+        "name": "local",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "bin",
+            "is_dir": true,
+            "children": [],
+            "content": null
+          },
+          {
+            "name": "lib",
+            "is_dir": true,
+            "children": [],
+            "content": null
+          },
+          {
+            "name": "share",
+            "is_dir": true,
+            "children": [],
+            "content": null
+          }
+        ],
+        "content": null
+      },
+      {
+        "name": "share",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "doc",
+            "is_dir": true,
+            "children": [],
+            "content": null
+          },
+          {
+            "name": "man",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "man1",
+                "is_dir": true,
+                "children": [
+                  {
+                    "name": "ls.1.gz",
+                    "is_dir": false,
+                    "children": [],
+                    "content": "Manual page for ls command"
+                  }
+                ],
+                "content": null
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
+      },
+      {
+        "name": "src",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "linux-headers-5.15.0-76",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "include",
+                "is_dir": true,
+                "children": [
+                  {
+                    "name": "linux",
+                    "is_dir": true,
+                    "children": [
+                      {
+                        "name": "kernel.h",
+                        "is_dir": false,
+                        "children": [],
+                        "content": "Linux kernel header file"
+                      }
+                    ],
+                    "content": null
+                  }
+                ],
+                "content": null
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
+      }
+    ],
+    "content": null
+  },
+  {
+    "name": "var",
+    "is_dir": true,
+    "children": [
+      {
+        "name": "cache",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "apt",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "archives",
+                "is_dir": true,
+                "children": [
+                  {
+                    "name": "partial",
+                    "is_dir": true,
+                    "children": [],
+                    "content": null
+                  }
+                ],
+                "content": null
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
+      },
+      {
+        "name": "lib",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "dpkg",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "status",
+                "is_dir": false,
+                "children": [],
+                "content": "Package status information"
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
+      },
+      {
+        "name": "log",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "auth.log",
+            "is_dir": false,
+            "children": [],
+            "content": "Authentication log"
+          },
+          {
+            "name": "syslog",
+            "is_dir": false,
+            "children": [],
+            "content": "System log"
+          },
+          {
+            "name": "kern.log",
+            "is_dir": false,
+            "children": [],
+            "content": "Kernel log"
+          },
+          {
+            "name": "nginx",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "access.log",
+                "is_dir": false,
+                "children": [],
+                "content": "Nginx access log"
+              },
+              {
+                "name": "error.log",
+                "is_dir": false,
+                "children": [],
+                "content": "Nginx error log"
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
+      },
+      {
+        "name": "spool",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "cron",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "crontabs",
+                "is_dir": true,
+                "children": [
+                  {
+                    "name": "root",
+                    "is_dir": false,
+                    "children": [],
+                    "content": "Root's crontab"
+                  }
+                ],
+                "content": null
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
+      },
+      {
+        "name": "www",
+        "is_dir": true,
+        "children": [
+          {
+            "name": "html",
+            "is_dir": true,
+            "children": [
+              {
+                "name": "index.html",
+                "is_dir": false,
+                "children": [],
+                "content": "Default web page"
+              }
+            ],
+            "content": null
+          }
+        ],
+        "content": null
+      }
+    ],
+    "content": null
   }
-}
+]
