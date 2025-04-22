@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>OS File Viewer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <style>
         body {
             display: flex;
@@ -36,7 +39,8 @@
             box-sizing: border-box;
         }
 
-        .folder, .file {
+        .folder,
+        .file {
             cursor: pointer;
             padding: 6px 8px;
             display: flex;
@@ -46,7 +50,8 @@
             transition: background 0.2s ease-in-out;
         }
 
-        .folder:hover, .file:hover {
+        .folder:hover,
+        .file:hover {
             background-color: #f0f0f0;
         }
 
@@ -68,6 +73,23 @@
             list-style: none;
             padding-left: 10px;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            white-space: nowrap;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -78,70 +100,137 @@
     <div id="resizer"></div>
     <div id="file-content">
         <h3>File Content</h3>
-        <pre id="content">Select a file to view its content.</pre>
+        <table>
+            <thead>
+                <tr>
+                    <th>Path</th>
+                    <th>Type</th>
+                    <th>Extension</th>
+                    <th>Name</th>
+                    <th>File Size</th>
+                    <th>File Type</th>
+                </tr>
+            </thead>
+            <tbody id="content-body">
+                <tr><td colspan="6">Select a file or folder to view contents.</td></tr>
+            </tbody>
+        </table>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             fetch("/get-directory-structure/")
-                .then(response => response.json())
-                .then(data => renderTree(data, document.getElementById("tree")))
-                .catch(error => console.error("Error loading file tree:", error));
+                .then((response) => response.json())
+                .then((data) => renderTree(data, document.getElementById("tree"), ""));
 
-            function renderTree(data, parent) {
-                data.forEach(item => {
-                    let element = document.createElement("li");
-                    element.classList.add(item.is_dir ? "folder" : "file");
-                    
+            function renderTree(data, parent, currentPath) {
+                data.forEach((item) => {
+                    const li = document.createElement("li");
+                    li.classList.add(item.is_dir ? "folder" : "file");
+
+                    const fullPath = currentPath ? `${currentPath}/${item.name}` : item.name;
+                    li.dataset.path = fullPath;
+
                     if (item.is_dir) {
-                        element.innerHTML = `<span class='arrow'><i class='fas fa-chevron-right'></i></span>
-                                             <span class='icon'><i class='fas fa-folder'></i></span> ${item.name}`;
-                        let sublist = document.createElement("ul");
+                        li.innerHTML = `<span class='arrow'><i class='fas fa-chevron-right'></i></span>
+                                        <span class='icon'><i class='fas fa-folder'></i></span> ${item.name}`;
+                        const sublist = document.createElement("ul");
                         sublist.style.display = "none";
-                        element.addEventListener("click", function(event) {
-                            event.stopPropagation();
-                            let isExpanded = sublist.style.display === "block";
+
+                        // This expands directory on arrow click
+                        const arrow = li.querySelector(".arrow");
+                        arrow.addEventListener("click", function (e) {
+                            e.stopPropagation();
+                            const isExpanded = sublist.style.display === "block";
                             sublist.style.display = isExpanded ? "none" : "block";
-                            element.classList.toggle("expanded", !isExpanded);
+                            li.classList.toggle("expanded", !isExpanded);
                         });
-                        parent.appendChild(element);
+
+                        // This loads content if directory is clicked anywhere except the arrow
+                        li.addEventListener("click", function (e) {
+                            e.stopPropagation();
+                            loadContent(fullPath);
+                        });
+
+                        parent.appendChild(li);
                         parent.appendChild(sublist);
-                        renderTree(item.children, sublist);
+                        renderTree(item.children, sublist, fullPath);
                     } else {
-                        element.innerHTML = `<span class='icon'><i class='fas fa-file-alt'></i></span> ${item.name}`;
-                        element.addEventListener("click", function() {
-                            document.getElementById("content").textContent = item.content || "No content available.";
+                        li.innerHTML = `<span class='icon'><i class='fas fa-file-alt'></i></span> ${item.name}`;
+                        li.addEventListener("click", function (e) {
+                            e.stopPropagation();
+                            loadContent(fullPath);
                         });
-                        parent.appendChild(element);
+                        parent.appendChild(li);
                     }
                 });
             }
-        });
 
-        // Resizer functionality
-        const resizer = document.getElementById("resizer");
-        const fileTree = document.getElementById("file-tree");
-        let isResizing = false;
+            function loadContent(path) {
+                fetch(`/get-file-content/${path}/`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        const tbody = document.getElementById("content-body");
+                        tbody.innerHTML = "";
 
-        resizer.addEventListener("mousedown", (event) => {
-            isResizing = true;
-            document.addEventListener("mousemove", resizePanel);
-            document.addEventListener("mouseup", stopResize);
-        });
-
-        function resizePanel(event) {
-            if (!isResizing) return;
-            let newWidth = event.clientX;
-            if (newWidth > 200 && newWidth < window.innerWidth * 0.5) {
-                fileTree.style.width = newWidth + "px";
+                        if (data.type === "directory") {
+                            if (data.contents.length === 0) {
+                                tbody.innerHTML =
+                                    "<tr><td colspan='6'>No files in this directory.</td></tr>";
+                            } else {
+                                data.contents.forEach((file) => {
+                                    tbody.innerHTML += `<tr>
+                                        <td>${file.path}</td>
+                                        <td>${file.type}</td>
+                                        <td>${file.extension || ""}</td>
+                                        <td>${file.name}</td>
+                                        <td>${file.size || ""}</td>
+                                        <td>${file.file_type || ""}</td>
+                                    </tr>`;
+                                });
+                            }
+                        } else if (data.type === "file") {
+                            const file = data.content;
+                            tbody.innerHTML = `<tr>
+                                <td>${file.path}</td>
+                                <td>${file.type}</td>
+                                <td>${file.extension || ""}</td>
+                                <td>${file.name}</td>
+                                <td>${file.size || ""}</td>
+                                <td>${file.file_type || ""}</td>
+                            </tr>`;
+                        }
+                    })
+                    .catch((err) => {
+                        console.error("Error loading file content:", err);
+                    });
             }
-        }
 
-        function stopResize() {
-            isResizing = false;
-            document.removeEventListener("mousemove", resizePanel);
-            document.removeEventListener("mouseup", stopResize);
-        }
+            // Resizer
+            const resizer = document.getElementById("resizer");
+            const fileTree = document.getElementById("file-tree");
+            let isResizing = false;
+
+            resizer.addEventListener("mousedown", () => {
+                isResizing = true;
+                document.addEventListener("mousemove", resizePanel);
+                document.addEventListener("mouseup", stopResize);
+            });
+
+            function resizePanel(event) {
+                if (!isResizing) return;
+                const newWidth = event.clientX;
+                if (newWidth > 200 && newWidth < window.innerWidth * 0.5) {
+                    fileTree.style.width = `${newWidth}px`;
+                }
+            }
+
+            function stopResize() {
+                isResizing = false;
+                document.removeEventListener("mousemove", resizePanel);
+                document.removeEventListener("mouseup", stopResize);
+            }
+        });
     </script>
 </body>
 </html>
